@@ -13,8 +13,8 @@ export class QuizesService {
   async createQuiz(createQuizDto: CreateQuizDto) {
     const newQuiz = this.quizRepository.create(createQuizDto);
 
-    const result = await this.quizRepository.save(newQuiz, {});
+    const createdQuiz = await this.quizRepository.save(newQuiz);
 
-    return result;
+    return createdQuiz;
   }
 }

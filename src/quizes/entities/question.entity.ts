@@ -3,9 +3,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+import { AnswerOption } from './answer.entity';
 import { Quize } from './quize.entity';
 
 @Entity('questions')
@@ -19,4 +21,9 @@ export class Question {
   @ManyToOne(() => Quize, (quize) => quize.questions, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'quize_id' })
   quize: Quize;
+
+  @OneToMany(() => AnswerOption, (answer_option) => answer_option.question, {
+    cascade: true,
+  })
+  answerOptions: AnswerOption[];
 }

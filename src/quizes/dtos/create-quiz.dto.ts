@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
 import {
+  ArrayMinSize,
   IsArray,
   IsNotEmpty,
   MaxLength,
@@ -14,6 +15,7 @@ export class CreateQuizDto {
   title: string;
 
   @IsArray()
+  @ArrayMinSize(1)
   @ValidateNested()
   @Type(() => CreateQuestionDto)
   questions: CreateQuestionDto[];
