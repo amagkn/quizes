@@ -2,7 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { User } from './users/user.entity';
+import { Question } from './quizes/entities/question.entity';
+import { Quize } from './quizes/entities/quize.entity';
+import { QuizesModule } from './quizes/quizes.module';
+import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -17,12 +20,13 @@ import { UsersModule } from './users/users.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [User],
+        entities: [User, Quize, Question],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     UsersModule,
+    QuizesModule,
   ],
   controllers: [],
   providers: [],
