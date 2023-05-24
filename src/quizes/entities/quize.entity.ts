@@ -10,6 +10,6 @@ export class Quize {
   @Column({ length: 250 })
   title: string;
 
-  @OneToMany(() => Question, (question) => question.quize)
+  @OneToMany(() => Question, (question) => question.quize, { cascade: true })
   questions: Question[];
 }
